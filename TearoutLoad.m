@@ -1,6 +1,12 @@
 function [ P ] = TearoutLoad( Block, t, tau, points, D, res )
 % TearoutStress - Returns the minimum amount of stress required to cause
 % tear-out in a rivet configuration.
+% Block: binary area representing the stock. 0 = solid, 1 = hole
+% t: stock thickness
+% tau: ultimate shear stress of rivet
+% points: list of hole center coordinates
+% D: rivet shaft diameter
+% res: resolution, units: cells/in
 
 % The tear-out load is found by taking the sum of two times the ultimate
 % shear stress of each riveet multiplied by the vertical length to the next

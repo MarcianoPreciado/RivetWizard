@@ -1,6 +1,17 @@
-function [ points ] = StaggeredChain( A,B,C,C0, N,D,W,h  )
-    B01 = B/4;
-    B02 = 3*B/4;
+function [ points ] = StaggeredChain( A,B,C,C0,N,D,W,h )
+% StaggeredChain - Returns an array of coordinates for drill holes for a
+% staggered-chain rivet configuration with the given parameters.
+% A: min vertical edge distance
+% B: rivet pitch
+% C: row spacing
+% C0: spacing between middle rows
+% N: Number of rivets on each row
+% D: Diameter of rivet shaft
+% W: Width of stock
+% h: height of stock
+
+B01 = B/4;
+B02 = 3*B/4;
 % Make sure there is enough width for the configuration (with 1/16 in space
 % between bar edges and hole edges)
 points = [];

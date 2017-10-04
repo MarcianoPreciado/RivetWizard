@@ -1,4 +1,14 @@
 function [Block] = PlotHoles( Block,h,W, res, holes, D,plot)
+% PlotHoles - Adds the holes from list of coordinates to the binary matrix
+% and plots if <plot> is true
+% Block: binary matrix representing the stock. 0 = stock, 1= hole
+% h: stock height
+% W: stock width
+% res: resolution of Block in cells/in
+% holes: list of coordinates for hole centers
+% D: rivet shaft diameter
+% plot: if true, will plot the new block, if false doesn not plot
+
 [n,~] = size(holes);
 yindex = linspace(0,h,round(h*res));
 xindex = linspace(0,W,round(res*W));

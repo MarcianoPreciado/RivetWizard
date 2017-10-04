@@ -1,4 +1,15 @@
 function [ points, C ] = StaggeredDiamond(A,B,C,C0,N,D,W,h)
+% StaggeredDiamond - Returns an array of coordinates for drill holes for a
+% staggered-diamond rivet configuration with the given parameters.
+% A: min vertical edge distance
+% B: rivet pitch
+% C: row spacing
+% C0: spacing between middle rows
+% N: Number of rivets on base row
+% D: Diameter of rivet shaft
+% W: Width of stock
+% h: height of stock
+
 % Make sure there is enough width for the configuration (with 1/16in space
 % between bar edges and hole edges.
 points = [];

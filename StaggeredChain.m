@@ -1,4 +1,4 @@
-function [ points ] = StaggeredChain( A,B,C,C0,N,D,W,h )
+function [ points, C ] = StaggeredChain( A,B,C,C0,N,D,W,h )
 % StaggeredChain - Returns an array of coordinates for drill holes for a
 % staggered-chain rivet configuration with the given parameters.
 % A: min vertical edge distance
@@ -21,15 +21,20 @@ end
 
 % Find how many rows on either side of the center are possible
 L = 2*A + C0;  % [in] Amount of vertical space needed for configuration;
-m = 1;  % [] Number of rows allowable after base row;
+m = 1;  % [] Number of rows on either side of half line base row;
 while( L <= h )
     m = m + 1;
     L = L + 2*C;
 end
 m = m - 1;
+
 if(m == 0)
     return;
+elseif(m > 1)
+    Le = h/2 - A - C0/2;
+    C = Le/(m-1);
 end
+
 
 y = h/2 + C0/2;
 x = W/2;

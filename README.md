@@ -15,7 +15,7 @@ The failure loads are anteceded by the coordinates of the center-points of each 
 
 Here is an example of what the command line output might look like with a selected accuracy of 1/16 in:
 ```
-Tensile: 5373.88	Shear: 5900.00	Tear: 8316.63	Bearing: 6190.81
+Tensile: 5373.88   Shear: 5900.00   Tear: 8316.63   Bearing: 6190.81
 
 (0.312500, 0.500000)
 (0.312500, 1.000000)
@@ -30,4 +30,4 @@ Tensile: 5373.88	Shear: 5900.00	Tear: 8316.63	Bearing: 6190.81
 ```
 #### Graphical Output
 The program also outputs a diagram to show what the best configuration found would look like. Here is an example image.
-![alt text](https://github.com/MarcianoPreciado/RivetWizard/Images/OutputGraph.png "Example Output Diagram")
+![alt text](https://github.com/MarcianoPreciado/RivetWizard/blob/master/Images/OutputGraph.png "Example Output Diagram")

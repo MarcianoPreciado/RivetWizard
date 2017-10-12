@@ -1,3 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Copyright 2017 Marciano C. Preciado
+%
+%   Licensed under the Apache License, Version 2.0 (the "License");
+%   you may not use this file except in compliance with the License.
+%   You may obtain a copy of the License at
+%
+%       http://www.apache.org/licenses/LICENSE-2.0
+%
+%   Unless required by applicable law or agreed to in writing, software
+%   distributed under the License is distributed on an "AS IS" BASIS,
+%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%   See the License for the specific language governing permissions and
+%   limitations under the License.
+%
+% Author:   Marciano C. Preciado
+% Date:     October 2, 2017
+% Purpose:  Returns a list of points in the staggered diamond configuration
+%           specified by the imput parameters.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [ points, C ] = StaggeredDiamond(A,B,C,C0,N,D,W,h)
 % StaggeredDiamond - Returns an array of coordinates for drill holes for a
 % staggered-diamond rivet configuration with the given parameters.
@@ -47,7 +69,7 @@ for i = N:-1:N+1-m
         points(n,2) = y;
         n = n + 1;
         i = i - 2;
-        
+
         % Placement of rest of points
         for j = 1:i/2
            points(n,1) = x + B*(.5 + j);
@@ -73,8 +95,8 @@ for i = N:-1:N+1-m
            n = n + 1;
         end
     end
-    
-    
+
+
     y = y + C;
 end
 
@@ -91,7 +113,7 @@ for i = N:-1:N+1-m
         points(n,2) = y;
         n = n + 1;
         i = i - 2;
-        
+
         % Placement of rest of points
         for j = 1:i/2
            points(n,1) = x + B*(.5 + j);
@@ -117,9 +139,8 @@ for i = N:-1:N+1-m
            n = n + 1;
         end
     end
-    
-    
+
+
     y = y - C;
 end
 end
-

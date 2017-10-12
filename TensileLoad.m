@@ -1,3 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Copyright 2017 Marciano C. Preciado
+%
+%   Licensed under the Apache License, Version 2.0 (the "License");
+%   you may not use this file except in compliance with the License.
+%   You may obtain a copy of the License at
+%
+%       http://www.apache.org/licenses/LICENSE-2.0
+%
+%   Unless required by applicable law or agreed to in writing, software
+%   distributed under the License is distributed on an "AS IS" BASIS,
+%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%   See the License for the specific language governing permissions and
+%   limitations under the License.
+%
+% Author:   Marciano C. Preciado
+% Date:     October 2, 2017
+% Purpose:  Calculates the max allowable tensile load of a given configuration.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [ P_tensile ] = TensileLoad( Block, t, sig_u, res )
 %TensileLoad - Calculates the maximum allowable tensile load on the given
 %block with given thickness, ultimate tensile strength, and resolution.
@@ -24,4 +45,3 @@ end
 
 P_tensile = sig_u * t * (W - LN_max/res);
 end
-

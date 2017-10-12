@@ -1,3 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Copyright 2017 Marciano C. Preciado
+%
+%   Licensed under the Apache License, Version 2.0 (the "License");
+%   you may not use this file except in compliance with the License.
+%   You may obtain a copy of the License at
+%
+%       http://www.apache.org/licenses/LICENSE-2.0
+%
+%   Unless required by applicable law or agreed to in writing, software
+%   distributed under the License is distributed on an "AS IS" BASIS,
+%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%   See the License for the specific language governing permissions and
+%   limitations under the License.
+%
+% Author:   Marciano C. Preciado
+% Date:     October 2, 2017
+% Purpose:  Calculates the max allowable load for tear-out of a configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [ P ] = TearoutLoad( Block, t, tau, points, D, res )
 % TearoutStress - Returns the minimum amount of stress required to cause
 % tear-out in a rivet configuration.
@@ -9,7 +30,7 @@ function [ P ] = TearoutLoad( Block, t, tau, points, D, res )
 % res: resolution, units: cells/in
 
 % The tear-out load is found by taking the sum of two times the ultimate
-% shear stress surrounding material multiplied by the vertical length to the 
+% shear stress surrounding material multiplied by the vertical length to the
 % next nearest edge multiplied by the thickness of the thinnest sheet.
 [rmax,~] = size(Block);
 P = 0;
@@ -77,12 +98,11 @@ for i = 1:length(points)
                       edge_found = true;
                    end
                end
-               break;               
-           end        
+               break;
+           end
         end
-    end   
+    end
     L = double(d)/res;          % Calculate length
     P = P + 2*tau*L*t;  % Add onto summation of load
 end
 end
-

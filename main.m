@@ -1,13 +1,28 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Marciano C. Preciado
-% October 2, 2017
-% Main Rivet Optimizer
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Copyright 2017 Marciano C. Preciado
+%
+%   Licensed under the Apache License, Version 2.0 (the "License");
+%   you may not use this file except in compliance with the License.
+%   You may obtain a copy of the License at
+%
+%       http://www.apache.org/licenses/LICENSE-2.0
+%
+%   Unless required by applicable law or agreed to in writing, software
+%   distributed under the License is distributed on an "AS IS" BASIS,
+%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%   See the License for the specific language governing permissions and
+%   limitations under the License.
+%
+% Author:   Marciano C. Preciado
+% Date:     October 12, 2017
+% Purpose:  Main Rivet Optimizer
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear, clc
 % Operational Parameters
-res = 100;
-accuracy = 1/16;
-graph = true;
+res = 100;            % [cells/in] The number of nodes per inch
+accuracy = 1/16;      % [in] The smallest variation between test parameters
+graph = false;         % [boolean] If true, displays each iteration
 
 % Material properties
 % - Aluminum Plate Characteristics -
@@ -16,7 +31,7 @@ tau_u = 30000;          % [psi] Material ultimate shear strength
 E = 10296601;           % [psi] Elastic modulus
 t = 0.0645;             % [in] Material thickness
 W = 2.0515;             % [in] Material Width
-h = 1.758;              % [in] Height of overlap                
+h = 1.758;              % [in] Height of overlap
 % - Rivet Characteristics -
 D = 0.194;              % [in] Avg rivet hole diameter
 Do = 0.3955;            % [in] Rivet outer diameter
@@ -78,9 +93,9 @@ for i = 1:length(Base_range)
                         % Find the lowest failure load
                         P = [P_tensile, P_shear, P_tearout, P_bearing];
                         P_fail = min(P);
-                        
+
                         % If the failure load is larger than the current
-                        % largest,record the failure load and the 
+                        % largest,record the failure load and the
                         % parameters that made it.
                         if(P_fail >= P_max)
                             P_max = P_fail;
@@ -90,7 +105,7 @@ for i = 1:length(Base_range)
                             params(4) = C;
                             params(5) = Co;
                             params(6) = phi;
-                        end                        
+                        end
                     end
                 end
             end
@@ -109,6 +124,7 @@ phi = params(6);
 
 holes = StaggeredDiamond(A,B,C,Co,Base, D, W,h); %[in,in]
 holes = RotatePoints(W/2, h/2, holes, D, phi);
+holes = FormatCoordinates(holes,accuracy);
 [N,~] = size(holes);
 % Create "simulation" of lap joint
 Block = zeros(round(res*h), round(res*W));
@@ -123,4 +139,8 @@ fprintf(['Tensile: %.2f\tShear: %.2f\tTear: %.2f\tBearing:'...
 title('Best Calculated Rivet Configuration');
 xlabel('Width');
 ylabel('Height');
-colormap('summer');
+colormap('hot');
+
+for i = 1:N
+   fprintf('(%6.6f, %6.6f)\n',holes(i,1),holes(i,2)); 
+end

@@ -1,3 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Copyright 2017 Marciano C. Preciado
+%
+%   Licensed under the Apache License, Version 2.0 (the "License");
+%   you may not use this file except in compliance with the License.
+%   You may obtain a copy of the License at
+%
+%       http://www.apache.org/licenses/LICENSE-2.0
+%
+%   Unless required by applicable law or agreed to in writing, software
+%   distributed under the License is distributed on an "AS IS" BASIS,
+%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%   See the License for the specific language governing permissions and
+%   limitations under the License.
+%
+% Author:   Marciano C. Preciado
+% Date:     October 2, 2017
+% Purpose:  Adds representation of drilled holes into the 'Block' representation
+%           of the overlapped specimen.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [Block] = PlotHoles( Block,h,W, res, holes, D,plot)
 % PlotHoles - Adds the holes from list of coordinates to the binary matrix
 % and plots if <plot> is true
@@ -21,7 +43,7 @@ for i = 1:n
     % Creat index bounds
     lx = cx - round(R*res); ux = cx + round(R*res);
     ly = cy - round(R*res); uy = cy + round(R*res);
-    
+
     % Create square and cycle within square to find which points are part
     % of the hole
     for c = lx:ux
@@ -34,10 +56,9 @@ for i = 1:n
             end
         end
     end
-    
+
 end
 if(plot)
     imagesc(Block);
 end
 end
-

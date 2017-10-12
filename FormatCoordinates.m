@@ -15,33 +15,17 @@
 %   limitations under the License.
 %
 % Author:   Marciano C. Preciado
-% Date:     October 2, 2017
-% Purpose:  Finds the index of the closest element to 'value' in a sorted
-%           numerical vector.
+% Date:     October 12, 2017
+% Purpose:  Reformat coordinates to reflect measuring accuracy
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [ ind ] = ClosestIndex( vector, value)
-if(value >= vector(end))
-    ind = length(vector);
-    return;
-elseif(value <= vector(1))
-    ind = 0;
-    return;
+function [ new_points ] = FormatCoordinates( points, accuracy)
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+[N,~] = size(points);
+new_points = zeros(N,2);
+for i = 1:N*2
+   new_points(i) = round(points(i)/accuracy)*accuracy; 
+end
 end
 
-ind = 0;
-u = length(vector);
-l = 1;
-while l <= u
-    mid = int32(u+l)/2;
-    if(value < vector(mid))
-        u = mid - 1;
-    elseif(value > vector(mid))
-        l = mid + 1;
-    else
-        ind = mid;
-        return;
-    end
-end
-ind = mid;
-end
